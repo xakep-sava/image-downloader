@@ -1,0 +1,12 @@
+{
+  "name": "image-downloader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/xakep-sava/image-downloader.git",
+  "author": "Vladimir Savrov <xakep.sava@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0"
+  }
+}
