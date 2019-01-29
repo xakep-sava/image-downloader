@@ -26,25 +26,25 @@ request(entryPoint, (error, response, body) => {
 const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
 
 let serialDownload = (images, $) => {
-  let imagePath = outputPath + '/' + $(images[currentItem]).text();
+  if (images.length > currentItem) {
+    let imagePath = outputPath + '/' + $(images[currentItem]).text();
 
-  if (fs.existsSync(imagePath)) {
-    currentItem++;
+    if (fs.existsSync(imagePath)) {
+      currentItem++;
 
-    serialDownload(images, $);
-  } else {
-    download(baseUrl + $(images[currentItem]).attr('href'), imagePath, async () => {
-      await waitFor(50);
-      console.log($(images[currentItem]).text() + ' - done');
+      serialDownload(images, $);
+    } else {
+      download(baseUrl + $(images[currentItem]).attr('href'), imagePath, async () => {
+        await waitFor(50);
+        console.log($(images[currentItem]).text() + ' - done');
 
-      if (images.length > currentItem) {
         currentItem++;
 
         serialDownload(images, $);
-      } else {
-        console.log('Done');
-      }
-    });
+      });
+    }
+  } else {
+    console.log('Done');
   }
 };
 
